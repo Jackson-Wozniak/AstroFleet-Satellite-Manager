@@ -1,4 +1,13 @@
+using astrofleet_service.Data;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
+
+var connectionString = builder.Configuration.GetConnectionString("AstroFleetDbConnection");
+builder.Services.AddDbContext<AstroFleetDbContext>(options =>
+{
+    options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString));
+});
 
 builder.Services.AddControllers();
 
