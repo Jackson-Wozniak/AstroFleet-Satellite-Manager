@@ -12,8 +12,8 @@ using astrofleet_service.Data;
 namespace astrofleet_service.Migrations
 {
     [DbContext(typeof(AstroFleetDbContext))]
-    [Migration("20250516190717_SatelliteMigration1")]
-    partial class SatelliteMigration1
+    [Migration("20250517161010_SatelliteBase")]
+    partial class SatelliteBase
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -37,6 +37,10 @@ namespace astrofleet_service.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
+                    b.Property<string>("HomePlanet")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
                     b.Property<double>("MassInKilograms")
                         .HasColumnType("double");
 
@@ -46,28 +50,9 @@ namespace astrofleet_service.Migrations
                     b.Property<int>("OrbitType")
                         .HasColumnType("int");
 
-                    b.Property<string>("SatelliteType")
-                        .IsRequired()
-                        .HasMaxLength(13)
-                        .HasColumnType("varchar(13)");
-
                     b.HasKey("Id");
 
-                    b.ToTable("Satellite");
-
-                    b.HasDiscriminator<string>("SatelliteType").HasValue("Satellite");
-
-                    b.UseTphMappingStrategy();
-                });
-
-            modelBuilder.Entity("astrofleet_service.satellites.Entities.ScientificSatellite", b =>
-                {
-                    b.HasBaseType("astrofleet_service.satellites.Entities.Satellite");
-
-                    b.Property<double>("TemperatureCelsius")
-                        .HasColumnType("double");
-
-                    b.HasDiscriminator().HasValue("Scientific");
+                    b.ToTable("Satellites");
                 });
 #pragma warning restore 612, 618
         }

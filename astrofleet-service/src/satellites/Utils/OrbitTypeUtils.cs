@@ -13,4 +13,14 @@ public class OrbitTypeUtils
             _ => OrbitType.GEOSTATIONARY_ORBIT
         };
     }
+
+    public static string ToString(OrbitType type)
+    {
+        return type.ToString().ToUpper() switch
+        {
+            "LOW_EARTH_ORBIT" => "Low Earth Orbit",
+            "MEDIUM_EARTH_ORBIT" => "Medium Earth Orbit",
+            "GEOSTATIONARY_ORBIT" => "Geostationary Orbit"
+        };
+    }
 }

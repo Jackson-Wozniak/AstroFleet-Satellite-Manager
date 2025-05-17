@@ -23,12 +23,10 @@
 
     <ItemGroup>
       <Folder Include="App_Data\" />
-      <Folder Include="src\economy\" />
+      <Folder Include="Migrations\" />
+      <Folder Include="src\missions\" />
       <Folder Include="src\satellites\Configuration\" />
-      <Folder Include="src\satellites\Controllers\" />
-      <Folder Include="src\satellites\DTOs\" />
       <Folder Include="src\satellites\Scheduled\" />
-      <Folder Include="src\satellites\Services\" />
       <Folder Include="src\telemetry\" />
       <Folder Include="tests\" />
     </ItemGroup>

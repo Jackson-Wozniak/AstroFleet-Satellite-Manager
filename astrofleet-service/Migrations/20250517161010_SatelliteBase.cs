@@ -6,13 +6,16 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace astrofleet_service.Migrations
 {
     /// <inheritdoc />
-    public partial class SatelliteMigration1 : Migration
+    public partial class SatelliteBase : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.AlterDatabase()
+                .Annotation("MySql:CharSet", "utf8mb4");
+
             migrationBuilder.CreateTable(
-                name: "Satellite",
+                name: "Satellites",
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "varchar(255)", nullable: false)
@@ -23,13 +26,12 @@ namespace astrofleet_service.Migrations
                     MassInKilograms = table.Column<double>(type: "double", nullable: false),
                     OrbitStartTime = table.Column<DateTime>(type: "datetime(6)", nullable: false),
                     OrbitType = table.Column<int>(type: "int", nullable: false),
-                    SatelliteType = table.Column<string>(type: "varchar(13)", maxLength: 13, nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    TemperatureCelsius = table.Column<double>(type: "double", nullable: true)
+                    HomePlanet = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4")
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Satellite", x => x.Id);
+                    table.PrimaryKey("PK_Satellites", x => x.Id);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
         }
@@ -38,7 +40,7 @@ namespace astrofleet_service.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Satellite");
+                name: "Satellites");
         }
     }
 }
